@@ -1,9 +1,15 @@
 # icyhot-traderbot
 
-To install:
+Clone it: 
 
 ```
-python ./setup.py install
+git clone https://github.com/mahaekoh/icyhot-traderbot
+```
+
+Install it:
+
+```
+python icyhot-traderbot/setup.py install
 ```
 
 Create a key config:
@@ -15,7 +21,7 @@ secret: TEbOG2SEQ3EmySecretsAreVerySecureYouSeeQu7xUIBt7ZSreiqufdshbjfnqiurD/oxW
 passphrase: 92j48pass1g
 ```
 
-To run:
+Run it:
 
 ```
 python -m icyhot_traderbot keys/YOUR_KEY_CONFIG.cfg
