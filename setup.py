@@ -3,7 +3,8 @@
 from setuptools import setup, find_packages
 
 install_requires = [
-    'gdax==1.0.6'
+    'gdax==1.0.6',
+    'ConfigParser'
 ]
 
 tests_require = [
