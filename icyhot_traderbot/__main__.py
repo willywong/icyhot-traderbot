@@ -22,8 +22,9 @@ def main(argv):
     ticker = auth_client.get_product_ticker("BTC-USD")
     print(ticker)
     current_price = ticker["price"]
-    if current_price < 0.95 * prev_price: 
+    if prev_price > 0 and current_price < 0.95 * prev_price: 
       print "BUY BUY BUY at", current_price
+    prev_price = current_price
     time.sleep(120)
 
 if __name__ == "__main__":
