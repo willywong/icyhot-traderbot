@@ -17,15 +17,15 @@ def main(argv):
   auth_client = gdax.AuthenticatedClient(key, secret, passphrase, api_url="https://api.gdax.com")
   print auth_client.get_accounts()
   print auth_client.get_product_24hr_stats("BTC-USD")
-  prev_price = -1
+  prev_price = -1.0
   while True:
     ticker = auth_client.get_product_ticker("BTC-USD")
     print(ticker)
-    current_price = ticker["price"]
-    if prev_price > 0 and current_price < 0.95 * prev_price: 
+    current_price = float(ticker["price"])
+    if current_price < (0.95 * prev_price): 
       print "BUY BUY BUY at", current_price
     prev_price = current_price
-    time.sleep(120)
+    time.sleep(5)
 
 if __name__ == "__main__":
   main(sys.argv)
