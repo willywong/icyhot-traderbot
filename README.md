@@ -18,6 +18,8 @@ python icyhot-traderbot/setup.py install
 
 You can download and extract historical price CSV files from http://api.bitcoincharts.com/v1/csv/
 
+Or Kaggle - https://www.kaggle.com/mczielinski/bitcoin-historical-data
+
 ### Update the config: 
 
 The file config/backtester.cfg if provided for you to modify. 
