@@ -4,3 +4,4 @@ dist/
 *.pyc
 *.swp
 keys/*.cfg
+config/backtester.*cfg

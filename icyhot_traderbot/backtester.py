@@ -2,6 +2,7 @@ import sys, os, time, datetime, dateutil.parser, importlib
 import gdax
 from configparser import ConfigParser
 from .traders.base import AlwaysBuyTrader, SillyTrader
+from decimal import Decimal
 
 class TraderPerformanceTracker:
   """
@@ -10,16 +11,16 @@ class TraderPerformanceTracker:
 
   transactions = []
   client = None
-  budget = 0.0
-  wallet_btc = 0.0
-  wallet_usd = 0.0
+  budget = Decimal(0.0)
+  wallet_btc = Decimal(0.0)
+  wallet_usd = Decimal(0.0)
 
-  def __init__(self, client, budget = 0.0):
+  def __init__(self, client, budget = Decimal(0.0)):
     self.client = client
-    self.budget = float(budget)
-    self.wallet_usd = float(budget)
+    self.budget = Decimal(budget)
+    self.wallet_usd = Decimal(budget)
   
-  def buy(self, price = 0.0, size=0.0, product_id = "BTC-USD"):
+  def buy(self, price = Decimal(0.0), size = Decimal(0.0), product_id = "BTC-USD"):
     if self.wallet_usd < price * size:
       print("Ignoring BUY request, not enough USD: needed " + str(price * size) + " only had " + str(self.wallet_usd))
       return
@@ -71,7 +72,7 @@ def main(argv):
   start_datetime = config_parser.get("BackTesting", "start-datetime")
   end_datetime = config_parser.get("BackTesting", "end-datetime")
   tick_period = int(config_parser.get("BackTesting", "tick-period"))
-  budget = float(config_parser.get("BackTesting", "budget-usd"))
+  budget = Decimal(config_parser.get("BackTesting", "budget-usd"))
   
   trader_class = config_parser.get("BackTesting-Trader", "trader-class")
   try:
@@ -95,8 +96,8 @@ def main(argv):
       # format is timestamp,price,quantity
       parts = line.split(",")
       timestamp = int(parts[0])
-      price = float(parts[1])
-      quantity = float(parts[2])
+      price = Decimal(parts[1])
+      quantity = Decimal(parts[2])
 
       if timestamp < start_timestamp:
 	continue
